@@ -1,0 +1,52 @@
+{% extends 'base.html' %}
+
+
+
+{% block content %}
+<form method="post">
+    <label for="symbol">Choose Symbol</label>
+    <select id="symbol" name="symbol">
+        <option value="">Select a Symbol</option>
+        {% for symbol in symbolList %}
+            <option value="{{ symbol }}">{{ symbol }}</option>
+        {% endfor %}
+    </select>
+    <br />
+    <label for="chartType">Choose Chart Type</label>
+    <select id="chartType" name="chartType">
+        <option value="">Select a Chart Type</option>
+        <option value="1">Bar</option>
+        <option value="2">Line</option>
+    </select>
+    <br />
+    <label for="timeSeries">Choose Time Series</label>
+    <select id="timeSeries" name="timeSeries">
+        <option value="">Select a Time Series</option>
+        <option value="1">Intraday</option>
+        <option value="2">Daily</option>
+        <option value="3">Weekly</option>
+        <option value="4">Monthly</option>
+    </select>
+    <br />
+    <label>
+        Choose Start Date
+        <input type="date" id="startDate" name="startDate" min="2003-01-01" max="2023-04-20" />
+    </label>
+    <br />
+    <label>
+        Choose End Date
+        <input type="date" id="endDate" name="endDate" min="2003-01-01" max="2023-04-20" />
+    </label>
+    <br />
+    <button type="submit">Submit</button>
+</form>
+{% if chart %}
+    <div id="chart">
+        <embed type="image/svg+xml" src= "{{ chart|safe }}" />
+    </div>
+{% endif %}
+
+
+
+
+{% endblock %}
